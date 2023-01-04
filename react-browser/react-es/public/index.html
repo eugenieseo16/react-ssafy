@@ -13,55 +13,6 @@
     <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
     <script type="module" src="./main.js"></script>
-    <script type="module">
-      
-      // actual html element
-      // console.log(container);
-
-      // virtual element = react element
-      // React API
-      // Creating React Element
-      const headlineElement = React.createElement(
-        'h1',
-        { className: 'headline' },
-        'React 라이브러리 활용하기'
-      );
-
-      const abbrebiationElement = React.createElement(
-        'abbr',
-        { title: 'User Interface' },
-        'UI'
-      );
-
-      const catchphriseElement = React.createElement(
-        'p',
-        { 
-          className: 'catchphrise', 
-          children: [
-            'React는 컴포넌트 주도 개발이 가능한 환경을 제공하는 ',
-            abbrebiationElement,
-            '라이브러리입니다.'
-          ]
-        },
-      )
-
-      // React App
-      const strictMode = React.createElement(
-        React.StrictMode,
-        null,
-        headlineElement,
-        catchphriseElement
-      );
-
-      // ReactDOM API
-      // React DOM Root (createRoot)
-      // v17
-      // v18
-      const container = document.getElementById('root');
-      const reactDomRoot = ReactDOM.createRoot(container);
-      reactDomRoot.render(strictMode);
-      
-    </script>
   </head>
 
   <body>
