@@ -16,7 +16,19 @@ module.exports = {
         ignoreProperties: ['content-visibility'],
       },
     ],
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['tailwind'],
+      },
+    ],
   },
+  overrides: [
+    {
+      files: ['*.css'],
+      customSyntax: ['postcss-syntax', 'postcss-lit', 'postcss-styled'],
+    },
+  ],
   ignoreFiles: [
     'build/**',
     'coverage/**',

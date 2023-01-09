@@ -1,10 +1,15 @@
 import * as path from 'node:path';
 
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   plugins: [
     react(),
     !process.env.VITEST
@@ -13,9 +18,26 @@ export default defineConfig({
         })
       : undefined,
   ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: './jest.setup.js',
+    exclude: ['node_modules'],
+    reporters: ['verbose'],
+    coverage: {
+      all: true,
+      reporter: ['text', 'html', 'lcov'],
+      include: ['**/src/**/*.{js,jsx,ts,tsx}'],
+      exclude: [
+        '**/src/main.{js,jsx,ts,tsx}',
+        '**/src/@types/**/*.d.ts',
+        '**/*.test.{js,jsx,ts,tsx}',
+        '**/src/vite-env*',
+      ],
+      statements: 0,
+      branches: 0,
+      functions: 0,
+      lines: 0,
     },
   },
 });
