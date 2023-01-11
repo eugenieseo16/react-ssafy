@@ -5,6 +5,8 @@ interface AppNavProp {
   navList?: IAppNavItem[];
 }
 
+// Presentaitional Component
+// Stateless Component
 export function AppNav(props: AppNavProp) {
   return (
     <nav aria-label={props.label} className={styles.Nav}>

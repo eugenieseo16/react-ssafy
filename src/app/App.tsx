@@ -3,11 +3,12 @@ import { useState } from 'react';
 import styles from './App.module.css';
 import nextLogo from '@/assets/next-js.svg';
 import reactLogo from '@/assets/react.svg';
-import { AppNav } from '@/components';
+import { AppNav, ToggleButton } from '@/components';
 
+// Container Component
+// Stateful Component
 function App() {
   const [count, setCount] = useState<number>(0);
-
   const [navList] = useState<IAppNavItem[]>([
     {
       id: 'navitem-1',
@@ -45,6 +46,11 @@ function App() {
       },
     },
   ]);
+  const [isToggle, setIsToggle] = useState<boolean>(false);
+
+  const handleToggle = () => {
+    setIsToggle(!isToggle);
+  };
 
   return (
     <div className="App">
@@ -54,6 +60,12 @@ function App() {
       />
       <h1 lang="en">Vite + React</h1>
       <div className={styles.Card}>
+        <ToggleButton
+          toggle={isToggle}
+          toggleOff={0}
+          toggleOn={1}
+          onToggle={handleToggle}
+        />
         <button type="button" onClick={() => setCount((count) => count + 1)}>
           카운트 {count}
         </button>
