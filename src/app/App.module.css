@@ -1,36 +1,3 @@
-.Nav {
-  @apply flex justify-center gap-5 mb-8;
-}
-
-.Logo {
-  height: 6em;
-  will-change: filter;
-
-  &:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-
-  &.React:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .Logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .Card {
   padding: 2em;
 }

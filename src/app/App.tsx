@@ -1,31 +1,57 @@
 import { useState } from 'react';
 
 import styles from './App.module.css';
+import nextLogo from '@/assets/next-js.svg';
 import reactLogo from '@/assets/react.svg';
+import { AppNav } from '@/components';
 
 function App() {
   const [count, setCount] = useState<number>(0);
 
+  const [navList] = useState<IAppNavItem[]>([
+    {
+      id: 'navitem-1',
+      link: {
+        href: 'https://vitejs.dev',
+        isExternal: true,
+      },
+      image: {
+        alt: 'Vite 공식 홈페이지',
+        src: '/vite.svg',
+      },
+    },
+    {
+      id: 'navitem-2',
+      link: {
+        href: 'https://reactjs.org',
+        isExternal: true,
+      },
+      image: {
+        alt: 'React 공식 홈페이지',
+        src: reactLogo,
+        showTitle: true,
+      },
+    },
+    {
+      id: 'navitem-3',
+      link: {
+        href: 'https://nextjs.org',
+        isExternal: true,
+      },
+      image: {
+        alt: 'Next.js 공식 홈페이지',
+        src: nextLogo,
+        showTitle: true,
+      },
+    },
+  ]);
+
   return (
     <div className="App">
-      <nav aria-label="Vite & React 공식 홈 내비게이션" className={styles.Nav}>
-        <a href="https://vitejs.dev" rel="noopener noreferrer" target="_blank">
-          <img
-            alt="Vite 공식 홈페이지"
-            className={styles.Logo}
-            src="/vite.svg"
-            title="Vite 공식 홈페이지"
-          />
-        </a>
-        <a href="https://reactjs.org" rel="noopener noreferrer" target="_blank">
-          <img
-            alt="React 공식 홈페이지"
-            className={`${styles.Logo} ${styles.React}`}
-            src={reactLogo}
-            title="React 공식 홈페이지"
-          />
-        </a>
-      </nav>
+      <AppNav
+        label={'프론트엔드 인기 기술 홈페이지 내비게이션'}
+        navList={navList}
+      />
       <h1 lang="en">Vite + React</h1>
       <div className={styles.Card}>
         <button type="button" onClick={() => setCount((count) => count + 1)}>
