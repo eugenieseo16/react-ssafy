@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import styles from './App.module.css';
 import nextLogo from '@/assets/next-js.svg';
 import reactLogo from '@/assets/react.svg';
 import { AppNav, ToggleButton } from '@/components';
 
-// Container Component
-// Stateful Component
+// Side Effects
+// 1. DOM 접근/조작 (useRef, 문서 객체 참조(ref))
+// 2. 네트워크 요청/응답
+// 3. 이벤트 구독/취소
 function App() {
   const [count, setCount] = useState<number>(0);
   const [navList] = useState<IAppNavItem[]>([
@@ -46,11 +48,58 @@ function App() {
       },
     },
   ]);
+
   const [isToggle, setIsToggle] = useState<boolean>(false);
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
   };
+
+  // 관심사 실제 문서 객체 참조 - 접근/조작
+  // 참조 훅
+  const cardRef = useRef<HTMLDivElement | null>(null); // { current: null }
+  // 사이드 이펙트 처리 훅
+  // 1. [*] 사이드 이펙트 처리 콜백 함수
+  // 2. [ ] 이펙트 함수가 실행되기 위한 조건 (dependenciesList[state, state, ...])
+  // 3. [ ] 클린업 함수
+  useEffect(() => {
+    // print ref object
+    // console.log(cardRef);
+
+    // Thinking in React
+    if (cardRef.current) {
+      // cardRef.current.style.cssText = `
+      //   border: 3px solid currentColor;
+      // `;
+
+      cardRef.current = null;
+    }
+
+    // DOM API
+    // const card = document.querySelector(`.${styles.Card}`);
+    // eslint-disable-next-line no-console
+    // console.log(card);
+  }, []);
+
+  // [] : mounted , componentDidMount
+  // undefined : mounted + updated , componentDidMount + componentDidUpdate
+
+  // ref object가 변경되더라도 React는 다시 렌더링 하지 않습니다.
+  const countRef = useRef<number>(100);
+
+  // 사이드 이펙트 처리
+  useEffect(() => {
+    // 타이머 이벤트 구독
+    const clearId = setInterval(() => {
+      countRef.current += 7; // 100, 107, ...
+      // eslint-disable-next-line no-console
+      console.log('현재 카운트 값:', countRef.current);
+    }, 1000 / 60);
+
+    // 정리 cleanup
+    return () => clearInterval(clearId);
+  }, []);
+  // 이벤트의 구독과 취소
 
   return (
     <div className="App">
@@ -59,11 +108,11 @@ function App() {
         navList={navList}
       />
       <h1 lang="en">Vite + React</h1>
-      <div className={styles.Card}>
+      <div ref={cardRef} className={styles.Card}>
         <ToggleButton
           toggle={isToggle}
-          toggleOff={0}
-          toggleOn={1}
+          toggleOff={countRef.current}
+          toggleOn={countRef.current + 1}
           onToggle={handleToggle}
         />
         <button type="button" onClick={() => setCount((count) => count + 1)}>
