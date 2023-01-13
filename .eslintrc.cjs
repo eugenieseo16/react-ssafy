@@ -28,6 +28,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:testing-library/react',
     'plugin:jest-dom/recommended',
+    'plugin:storybook/recommended',
     'prettier',
   ],
   plugins: [
