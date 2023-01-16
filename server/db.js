@@ -30,7 +30,7 @@ export const books = [
     price: 13500,
   },
   {
-    isbn: 'ISBN-9791158888367',
+    isbn: 'ISBN-9791158738367',
     title: '불온한 파랑',
     author: '정이담',
     price: 12420,

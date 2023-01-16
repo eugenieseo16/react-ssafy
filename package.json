@@ -36,6 +36,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
     "@storybook/addon-essentials": "^7.0.0-beta.25",
     "@storybook/addon-interactions": "^7.0.0-beta.25",
     "@storybook/addon-links": "^7.0.0-beta.25",
@@ -56,6 +58,7 @@
     "@vitest/coverage-c8": "0.27.0",
     "@vitest/ui": "0.27.0",
     "autoprefixer": "10.4.13",
+    "cors": "2.8.5",
     "eslint": "8.31.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-import": "2.26.0",

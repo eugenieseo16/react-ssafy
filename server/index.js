@@ -1,3 +1,4 @@
+// import cors from 'cors';
 import express from 'express';
 
 import * as db from './db.js';
@@ -7,9 +8,14 @@ const API = '/api/v1';
 const PORT = 4000;
 let { books } = db;
 
+// app.use(cors());
 app.use(express.json());
 
 app.get(`${API}/books`, (_req, res) => {
+  res.status(200).send(books);
+});
+
+app.get(`${API}/book/:bookIsbn`, (_req, res) => {
   res.status(200).send(books);
 });
 

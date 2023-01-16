@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './App.module.css';
 import nextLogo from '@/assets/next-js.svg';
 import reactLogo from '@/assets/react.svg';
-import { AppNav, Card } from '@/components';
+import { AppNav, Card, Books } from '@/components';
 
 const navigationList: I_AppNavItem[] = [
   {
@@ -45,8 +45,8 @@ const navigationList: I_AppNavItem[] = [
 
 // Side Effects
 // - [x] DOM 접근/조작 (useRef, 문서 객체 참조(ref))
+// - [x] 이벤트 구독/취소 (cleanup function: subsribe: mounted / unsubsribe: beforeUnmount)
 // - [ ] 네트워크 요청/응답
-// - [ ] 이벤트 구독/취소
 function App() {
   const [navList] = useState<I_AppNavItem[]>(navigationList);
 
@@ -69,6 +69,7 @@ function App() {
       <h1 lang={appInfo.title.lang}>{appInfo.title.content}</h1>
       <Card count={count} onIncrement={() => setCount((count) => count + 1)} />
       <p className={styles.ReadTheDocs}>{appInfo.description}</p>
+      <Books />
     </div>
   );
 }
