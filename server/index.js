@@ -1,22 +1,23 @@
 import express from 'express';
 
-import { db } from './db.js';
+import * as db from './db.js';
 
 const app = express();
 const API = '/api/v1';
 const PORT = 4000;
+let { books } = db;
 
 app.use(express.json());
 
 app.get(`${API}/books`, (_req, res) => {
-  res.status(200).send(db.books);
+  res.status(200).send(books);
 });
 
 app.post(`${API}/books`, (req, res) => {
   const { isbn, title, author, price } = req.body;
   if (isbn && title && author && price) {
     const newBook = { isbn, title, author, price };
-    db.books.push(newBook);
+    books.push(newBook);
     res.status(200).send(newBook);
   } else {
     res.status(400).send({
@@ -25,17 +26,17 @@ app.post(`${API}/books`, (req, res) => {
   }
 });
 
-app.put(`${API}/books/:bookId`, (req, res) => {
-  const { bookId } = req.params;
-  const index = db.books.findIndex((book) => book.id === bookId);
+app.put(`${API}/books/:bookIsbn`, (req, res) => {
+  const { bookIsbn } = req.params;
+  const index = books.findIndex((book) => book.isbn === bookIsbn);
   if (index > -1) {
-    db.books.map((book) => {
-      if (book.id === bookId) {
+    books = books.map((book) => {
+      if (book.isbn === bookIsbn) {
         return { ...book, ...req.body };
       }
       return book;
     });
-    res.status(200).send(db.books[index]);
+    res.status(200).send(books[index]);
   } else {
     res.status(404).send({
       message: '도서를 찾을 수 없습니다.',
@@ -43,11 +44,11 @@ app.put(`${API}/books/:bookId`, (req, res) => {
   }
 });
 
-app.delete(`${API}/books/:bookId`, (req, res) => {
-  const { bookId } = req.params;
-  const index = db.books.findIndex((book) => book.id === bookId);
+app.delete(`${API}/books/:bookIsbn`, (req, res) => {
+  const { bookIsbn } = req.params;
+  const index = books.findIndex((book) => book.isbn === bookIsbn);
   if (index > -1) {
-    db.books = db.books.filter((book) => book.id !== bookId);
+    books = books.filter((book) => book.isbn !== bookIsbn);
     res.status(200).send({ message: '도서 삭제에 성공했습니다. 😃' });
   } else {
     res.status(404).send({
@@ -56,4 +57,5 @@ app.delete(`${API}/books/:bookId`, (req, res) => {
   }
 });
 
-app.listen(PORT, () => `http://localhost:${PORT}`);
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`http://localhost:${PORT}/api/v1/books`));

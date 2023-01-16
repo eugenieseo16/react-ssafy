@@ -1,4 +1,4 @@
-interface IAppNavItem {
+interface I_AppNavItem {
   id: string;
   link: {
     href: string;
@@ -9,4 +9,12 @@ interface IAppNavItem {
     src: string;
     showTitle?: boolean;
   };
+}
+
+interface I_AppInfo {
+  title: {
+    content: string;
+    lang: string;
+  };
+  description: string;
 }

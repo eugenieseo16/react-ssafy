@@ -1,30 +1,19 @@
 import styles from './AppNav.module.css';
+import { AppLink, Logo } from '@/components';
 
 interface AppNavProp {
   label: string;
-  navList?: IAppNavItem[];
+  navList?: I_AppNavItem[];
 }
 
-// Presentaitional Component
-// Stateless Component
-export function AppNav(props: AppNavProp) {
+export function AppNav(props: AppNavProp): JSX.Element {
   return (
     <nav aria-label={props.label} className={styles.Nav}>
       {props.navList?.map(({ id, link, image }) => {
         return (
-          <a
-            key={id}
-            href={link.href}
-            rel={link.isExternal ? 'noopener noreferrer' : undefined}
-            target={link.isExternal ? '_blank' : undefined}
-          >
-            <img
-              alt={image.alt}
-              className={styles.Logo}
-              src={image.src}
-              title={image.showTitle ? image.alt : undefined}
-            />
-          </a>
+          <AppLink key={id} href={link.href} isExternal={link.isExternal}>
+            <Logo alt={image.alt} showTitle={true} src={image.src} />
+          </AppLink>
         );
       })}
     </nav>
