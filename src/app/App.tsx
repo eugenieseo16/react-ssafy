@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 
 import styles from './App.module.css';
 import nextLogo from '@/assets/next-js.svg';
@@ -60,6 +60,17 @@ function App() {
 
   const [count, setCount] = useState<number>(0);
 
+  // prev rendering props : handleIncrement
+  // current rendering props : handleIncrement
+  // const handleIncrement = () => setCount((count) => count + 1);
+  // const handleDecrement = () => setCount((count) => count - 1);
+
+  // memoization : memory function value
+  // - useMemo(()=> value, [conditionState])
+  // - useCallback(functionValue, [conditionState])
+  const handleIncrement = useCallback(() => setCount((count) => count + 1), []);
+  const handleDecrement = useCallback(() => setCount((count) => count - 1), []);
+
   return (
     <div className="text-gray-900">
       <AppNav
@@ -67,7 +78,11 @@ function App() {
         navList={navList}
       />
       <h1 lang={appInfo.title.lang}>{appInfo.title.content}</h1>
-      <Card count={count} onIncrement={() => setCount((count) => count + 1)} />
+      <Card
+        count={count}
+        onDecrement={handleDecrement}
+        onIncrement={handleIncrement}
+      />
       <p className={styles.ReadTheDocs}>{appInfo.description}</p>
       <Books />
     </div>

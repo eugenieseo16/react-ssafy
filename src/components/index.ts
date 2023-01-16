@@ -2,6 +2,7 @@ export * from './Logo/Logo';
 export * from './Card/Card';
 export * from './Output/Output';
 export * from './Button/Button';
+export * from './Button/ButtonGroup';
 export * from './AppNav/AppNav';
 export * from './AppLink/AppLink';
 export * from './Books/Books';
