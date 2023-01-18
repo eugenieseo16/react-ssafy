@@ -23,7 +23,7 @@ export function Books() {
   };
 
   return (
-    <div className="my-5 p-5 border border-violet-500">
+    <div className="my-5 p-5">
       <ul className="flex flex-col gap-3">
         {books &&
           books.map((book) => (

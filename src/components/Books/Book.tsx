@@ -20,11 +20,13 @@ export function Book({
 }: Props): JSX.Element {
   return (
     <ListItem data-isbn={isbn}>
-      <strong>{title}</strong>
-      <em className="text-sm">{author}</em>
-      <span>{`${numberWithComma(price)}원`}</span>
+      <strong className="text-xl text-violet-600">{title}</strong>
+      <em className="text-sm text-gray-800">{author}</em>
+      <span className="text-violet-900 font-semibold">{`${numberWithComma(
+        price
+      )}원`}</span>
       <button
-        className="border border-violet-200"
+        className="border border-violet-200 text-violet-600"
         type="button"
         onClick={() => onDelete?.(isbn)}
       >

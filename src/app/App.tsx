@@ -54,23 +54,14 @@ function App() {
     description: '자세히 알아보려면 Vite 및 React 로고(링크)를 클릭하세요.',
   });
 
-  const [count, setCount] = useState<number>(0);
-
-  const handleIncrement = useCallback(() => setCount((count) => count + 1), []);
-  const handleDecrement = useCallback(() => setCount((count) => count - 1), []);
-
   return (
-    <div className="text-gray-900">
+    <div className="text-gray-900 mt-40">
       <AppNav
         label={'프론트엔드 인기 기술 홈페이지 내비게이션'}
         navList={navList}
       />
       <h1 lang={appInfo.title.lang}>{appInfo.title.content}</h1>
-      <Card
-        count={count}
-        onDecrement={handleDecrement}
-        onIncrement={handleIncrement}
-      />
+      <Card />
       <p className={styles.ReadTheDocs}>{appInfo.description}</p>
       <Books />
     </div>

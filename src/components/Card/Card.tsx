@@ -1,18 +1,15 @@
 import { MemoButton, MemoButtonGroup, Output } from '@/components';
+import { useCounter } from '@/contexts/Counter';
 
-interface Props {
-  count: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-}
+export function Card(): JSX.Element {
+  const { count, increment, decrement } = useCounter();
 
-export function Card({ count, onIncrement, onDecrement }: Props): JSX.Element {
   return (
     <div className="p-5">
       <div className="flex flex-col items-center">
         <MemoButtonGroup>
-          <MemoButton onClick={onIncrement}>카운트 +</MemoButton>
-          <MemoButton onClick={onDecrement}>카운트 -</MemoButton>
+          <MemoButton onClick={increment}>카운트 +</MemoButton>
+          <MemoButton onClick={decrement}>카운트 -</MemoButton>
         </MemoButtonGroup>
         <Output>{count}</Output>
       </div>
