@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 
 interface Props {
   className?: string;
@@ -19,4 +19,4 @@ Button.defaultProps = {
   className: '',
 };
 
-export const MemoButton = React.memo(Button);
+export const MemoButton = memo(Button);

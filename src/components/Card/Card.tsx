@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import { MemoButton, MemoButtonGroup, Output } from '@/components';
 
 interface Props {
@@ -9,20 +7,9 @@ interface Props {
 }
 
 export function Card({ count, onIncrement, onDecrement }: Props): JSX.Element {
-  // const renderButtonGroup = useMemo(
-  //   () => (
-  //     <Button.Group>
-  //       <Button onClick={onIncrement}>카운트 +</Button>
-  //       <Button onClick={onDecrement}>카운트 -</Button>
-  //     </Button.Group>
-  //   ),
-  //   [onDecrement, onIncrement]
-  // );
-
   return (
     <div className="p-5">
       <div className="flex flex-col items-center">
-        {/* {renderButtonGroup} */}
         <MemoButtonGroup>
           <MemoButton onClick={onIncrement}>카운트 +</MemoButton>
           <MemoButton onClick={onDecrement}>카운트 -</MemoButton>

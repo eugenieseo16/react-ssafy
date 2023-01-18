@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 import styles from './App.module.css';
 import nextLogo from '@/assets/next-js.svg';
@@ -43,10 +43,6 @@ const navigationList: I_AppNavItem[] = [
   },
 ];
 
-// Side Effects
-// - [x] DOM 접근/조작 (useRef, 문서 객체 참조(ref))
-// - [x] 이벤트 구독/취소 (cleanup function: subsribe: mounted / unsubsribe: beforeUnmount)
-// - [ ] 네트워크 요청/응답
 function App() {
   const [navList] = useState<I_AppNavItem[]>(navigationList);
 
@@ -60,14 +56,6 @@ function App() {
 
   const [count, setCount] = useState<number>(0);
 
-  // prev rendering props : handleIncrement
-  // current rendering props : handleIncrement
-  // const handleIncrement = () => setCount((count) => count + 1);
-  // const handleDecrement = () => setCount((count) => count - 1);
-
-  // memoization : memory function value
-  // - useMemo(()=> value, [conditionState])
-  // - useCallback(functionValue, [conditionState])
   const handleIncrement = useCallback(() => setCount((count) => count + 1), []);
   const handleDecrement = useCallback(() => setCount((count) => count - 1), []);
 

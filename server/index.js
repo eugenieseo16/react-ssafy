@@ -32,7 +32,7 @@ app.post(`${API}/books`, (req, res) => {
   }
 });
 
-app.put(`${API}/books/:bookIsbn`, (req, res) => {
+app.put(`${API}/book/:bookIsbn`, (req, res) => {
   const { bookIsbn } = req.params;
   const index = books.findIndex((book) => book.isbn === bookIsbn);
   if (index > -1) {
@@ -50,7 +50,7 @@ app.put(`${API}/books/:bookIsbn`, (req, res) => {
   }
 });
 
-app.delete(`${API}/books/:bookIsbn`, (req, res) => {
+app.delete(`${API}/book/:bookIsbn`, (req, res) => {
   const { bookIsbn } = req.params;
   const index = books.findIndex((book) => book.isbn === bookIsbn);
   if (index > -1) {
